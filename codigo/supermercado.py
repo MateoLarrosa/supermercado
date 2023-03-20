@@ -61,7 +61,7 @@ class Cliente:
                 break
             else:
                 # Distinas condiciones segun lo que ingrese el cliente para llevarlo a las secciones del "supermercado"
-                self.Catalogo()
+                self.catalogo()
                 seccion = input('Ingrese aqui la seccion: ')
                 
                 # si es menor de edad no puede ingresar a la seccion de alcohol.
@@ -85,7 +85,7 @@ class Cliente:
                             break
                         else:
                             # Si el producto esta en el catalogo lo agrega al carrito
-                            if producto in catalogo:
+                            if producto.lower() in catalogo:
                                 if producto in self.carrito:
                                     #en el dicc productos_agregados se lleva el conteo de las uds por producto que esta llevando
                                     if producto in self.productos_agregados:
@@ -96,6 +96,7 @@ class Cliente:
                                         print(f'Se agrego {producto} al carrito!!')
                                 else:
                                     self.carrito[producto] = catalogo[producto]
+                                    self.productos_agregados[producto] = 1
                                     print(f'Se agrego {producto} al carrito!!')
                                     continue
                             # Si no se encuentra en el catalogo se le informa al cliente
@@ -117,7 +118,7 @@ class Cliente:
                             break
                         else:
                             # Si el producto esta en el catalogo lo agrega al carrito
-                            if producto in catalogo:
+                            if producto.lower() in catalogo:
                                 if producto in self.carrito:
                                     #en el dicc productos_agregados se lleva el conteo de las uds por producto que esta llevando
                                     if producto in self.productos_agregados:
@@ -128,6 +129,7 @@ class Cliente:
                                         print(f'Se agrego {producto} al carrito!!')
                                 else:
                                     self.carrito[producto] = catalogo[producto]
+                                    self.productos_agregados[producto] = 1
                                     print(f'Se agrego {producto} al carrito!!')
                                     continue
                             # Si no se encuentra en el catalogo se le informa al cliente
@@ -150,7 +152,7 @@ class Cliente:
                             break
                         else:
                             # Si el producto esta en el catalogo lo agrega al carrito
-                            if producto in catalogo:
+                            if producto.lower() in catalogo:
                                 if producto in self.carrito:
                                     #en el dicc productos_agregados se lleva el conteo de las uds por producto que esta llevando
                                     if producto in self.productos_agregados:
@@ -161,6 +163,7 @@ class Cliente:
                                         print(f'Se agrego {producto} al carrito!!')
                                 else:
                                     self.carrito[producto] = catalogo[producto]
+                                    self.productos_agregados[producto] = 1
                                     print(f'Se agrego {producto} al carrito!!')
                                     continue
                             # Si no se encuentra en el catalogo se le informa al cliente
@@ -197,8 +200,8 @@ class Cliente:
         # si el dinero le da para hacer la compra cumple la condicion y se le muestran detalles de la misma
         elif total_de_compra <= self.dinero and len(self.carrito) > 0 :
             print('Productos comprados:')
-            for keys,value in self.carrito.items():
-                print(f'{keys} x{self.productos_agregados[keys]} uds : ${value}')
+            for key_carrito,value_carrito in self.carrito.items():
+                print(f'{key_carrito} x{self.productos_agregados[key_carrito]} uds : ${value_carrito}')
             vuelto =self.dinero - total_de_compra
             print(f'\ntotal de la compra: ${total_de_compra}\ndinero disponible: ${self.dinero}\nGracias {self.nombre} por confiar en nosotros, su vuelto es de ${vuelto}\nSe le mando un mail a {self.mail} con el resumen de la compra\nHasta pronto!!!!')
             self.dinero = vuelto
