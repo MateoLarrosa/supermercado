@@ -1,4 +1,4 @@
-from EntregaCoder2.supermercado import Cliente
+from codigo.supermercado import Cliente
 
 #funcion para pedir los datos al cliente
 def obtener_datos_cliente():
